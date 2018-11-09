@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Приветствуем Вас, ' + ${name} + '!'" />
-<p th:text="'жребий выпал: ' + ${num}" />
-<p th:text="(${name} != null and (${num}) > 0.9)? 'Это Ваш день!!!!' : 'Что ж, жизнь продолжается...'" />
+    <p th:text="'Приветствуем Вас, ' + ${name} + '!'"/>
+    <p th:text="'жребий выпал: ' + ${num}"/>
+    <p th:text="(${name} != null and (${num}) > 0.9)? 'Это Ваш день!!!!' : 'Что ж, жизнь продолжается...'"/>
 <a href=""><span th:text="'Рискните ещё, ' + ${name}"></span></a>
 </body>
 </html>

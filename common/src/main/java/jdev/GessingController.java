@@ -22,4 +22,9 @@ public class GessingController {
         model.addAttribute("num", fortuneService.tryFortune());
         return "gessing";
     }
+
+    @RequestMapping("/count")
+    public String counter(Model model) {
+        return "count";
+    }
 }
