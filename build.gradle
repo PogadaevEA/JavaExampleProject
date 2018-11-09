@@ -45,6 +45,8 @@ project(':tracker-core'){
     apply plugin: 'java-library-distribution'
     dependencies {
         compile project(':common')
+        compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.0'
+
     }
 }
 

@@ -1,6 +1,5 @@
 package jdev;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -11,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 /**
  * Created by epogadaev on 08.11.2018.
  */
-@Slf4j
 @SpringBootApplication
 @ComponentScan({"jdev"})
 public class Application {
