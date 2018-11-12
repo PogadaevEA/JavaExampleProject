@@ -12,11 +12,10 @@ import java.util.logging.Logger;
  * Created by epogadaev on 09.11.2018.
  * Реализует отравку данных
  */
-@Log4j
 @Service
 public class DataSentService {
 
-    private static Logger log = Logger.getLogger(DataSentService.class.getName())
+    private static Logger log = Logger.getLogger(DataSentService.class.getName());
 
     @Scheduled(fixedDelay = 2000)
     public void sentPointDTOToServerCore(List<PointDTO> pointDTOList){
