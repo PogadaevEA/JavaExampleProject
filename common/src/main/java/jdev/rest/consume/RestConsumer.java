@@ -28,7 +28,7 @@ public class RestConsumer {
                 System.out.println(e.getMessage());
             } finally {
                 System.out.println("======================================================================");
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             }
         }
     }
