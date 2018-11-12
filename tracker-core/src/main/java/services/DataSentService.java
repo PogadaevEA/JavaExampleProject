@@ -15,13 +15,22 @@ import java.util.logging.Logger;
 @Service
 public class DataSentService {
 
+    private DataSaveService dataSaveService;
+
+    public DataSentService (
+            DataSaveService dataSaveService
+    ) {
+        this.dataSaveService = dataSaveService;
+    }
+
     private static Logger log = Logger.getLogger(DataSentService.class.getName());
 
-    @Scheduled(fixedDelay = 2000)
-    public void sentPointDTOToServerCore(List<PointDTO> pointDTOList){
-        if(pointDTOList != null && !pointDTOList.isEmpty()) {
-            for (PointDTO pointDTO : pointDTOList){
-                log.info(pointDTO.toString());
+    @Scheduled(cron = "${cron.prop.30sec}")
+    public void sentPointDTOToServerCore(){
+
+        if(dataSaveService.pointDTOList != null && !dataSaveService.pointDTOList.isEmpty()) {
+            for (PointDTO pointDTO : dataSaveService.pointDTOList){
+                log.info("Sending point to server: " + pointDTO.toString());
             }
         }
     }

@@ -18,6 +18,8 @@ public class DataPeekServiceTest {
         final Placemark placemark = (Placemark) kml.getFeature();
         LineString lineString = (LineString) placemark.getGeometry();
         List<Coordinate> coordinates = lineString.getCoordinates();
+        double x = coordinates.get(0).getLatitude();
+        double y = coordinates.get(0).getLongitude();
     }
 
 }
