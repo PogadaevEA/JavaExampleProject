@@ -19,7 +19,7 @@ public class DataSaveService {
     public void savePointDTO (PointDTO pointDTO) {
         if (pointDTO != null) {
             pointDTOList.add(pointDTO);
-            log.info("Saving new point: " + pointDTO.toString());
+            log.info("Adding new point in deque: " + pointDTO.toString());
         }
 
     }

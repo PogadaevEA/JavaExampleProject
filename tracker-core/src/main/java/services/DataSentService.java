@@ -1,8 +1,11 @@
 package services;
 
 import jdev.dto.PointDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import sun.net.www.http.HttpClient;
 
 import java.util.logging.Logger;
 
@@ -12,6 +15,10 @@ import java.util.logging.Logger;
  */
 @Service
 public class DataSentService {
+
+
+    @Autowired
+    RestTemplate restTemplate;
 
     private DataSaveService dataSaveService;
 
@@ -27,9 +34,7 @@ public class DataSentService {
     public void sentPointDTOToServerCore(){
 
         if(dataSaveService.pointDTOList != null && !dataSaveService.pointDTOList.isEmpty()) {
-            for (PointDTO pointDTO : dataSaveService.pointDTOList){
-                log.warning("Sending point to server: " + pointDTO.toString());
-            }
+            restTemplate.postForLocation("http://localhost:8080/coords", dataSaveService.pointDTOList);
         }
     }
 }
