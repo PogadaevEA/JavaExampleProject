@@ -2,17 +2,12 @@ package services;
 
 import de.micromata.opengis.kml.v_2_2_0.*;
 import jdev.dto.PointDTO;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by epogadaev on 09.11.2018.
@@ -21,6 +16,7 @@ import java.util.stream.Collectors;
 @Log4j
 @Service
 public class DataPeekService {
+
 
     private DataSaveService dataSaveService;
 
@@ -31,17 +27,20 @@ public class DataPeekService {
         this.dataSaveService = dataSaveService;
     }
 
-    final Kml kml = Kml.unmarshal(new File("/Users/egor/Работа/StudyProjects/Projects/JavaExampleProject/tracker-core/src/test/resources/Tomsk_Moscow.kml"));
-
-
+    private  List<Coordinate> coordinates;
     private int i = 0;
+
+    @Scheduled(fixedDelay = 60*60*1000) //каждый час
+    private  void getCoordinates(){
+        Kml kml = unmarshalKmlFile();
+        Placemark placemark;
+        placemark = (Placemark) kml.getFeature();
+        LineString lineString = (LineString) placemark.getGeometry();
+        coordinates = lineString.getCoordinates();
+    }
 
     @Scheduled(cron = "${cron.prop.get}") //каждые 5 cек
     public void getPointDTOFromKmlFile() {
-
-        final Placemark placemark = (Placemark) kml.getFeature();
-        LineString lineString = (LineString) placemark.getGeometry();
-        List<Coordinate> coordinates = lineString.getCoordinates();
         if (coordinates.get(i) != null) {
             log.info("Getting new point: lat = " + coordinates.get(i).getLatitude() + ", lon = " + coordinates.get(i));
             dataSaveService.savePointDTO(new PointDTO(coordinates.get(i)));
@@ -51,6 +50,11 @@ public class DataPeekService {
             dataSaveService.savePointDTO(new PointDTO(coordinates.get(i)));
         }
 
+    }
+
+    private Kml unmarshalKmlFile() {
+        return Kml.unmarshal(new File("H:\\JavaExampleProject\\tracker-core\\src\\main\\resources\\kmls\\Tomsk_Moscow.kml"));
+//        return Kml.unmarshal(new File("/Users/egor/Работа/StudyProjects/Projects/JavaExampleProject/tracker-core/src/test/resources/Tomsk_Moscow.kml"));
     }
 
 }

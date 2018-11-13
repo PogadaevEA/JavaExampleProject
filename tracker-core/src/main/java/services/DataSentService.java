@@ -1,11 +1,9 @@
 package services;
 
 import jdev.dto.PointDTO;
-import lombok.extern.log4j.Log4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -30,7 +28,7 @@ public class DataSentService {
 
         if(dataSaveService.pointDTOList != null && !dataSaveService.pointDTOList.isEmpty()) {
             for (PointDTO pointDTO : dataSaveService.pointDTOList){
-                log.info("Sending point to server: " + pointDTO.toString());
+                log.warning("Sending point to server: " + pointDTO.toString());
             }
         }
     }
