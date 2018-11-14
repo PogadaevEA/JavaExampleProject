@@ -53,8 +53,8 @@ public class DataPeekService {
     }
 
     private Kml unmarshalKmlFile() {
-        return Kml.unmarshal(new File("H:\\JavaExampleProject\\tracker-core\\src\\main\\resources\\kmls\\Tomsk_Moscow.kml"));
-//        return Kml.unmarshal(new File("/Users/egor/Работа/StudyProjects/Projects/JavaExampleProject/tracker-core/src/test/resources/Tomsk_Moscow.kml"));
+//        return Kml.unmarshal(new File("H:\\JavaExampleProject\\tracker-core\\src\\main\\resources\\kmls\\Tomsk_Moscow.kml"));
+        return Kml.unmarshal(new File("/Users/egor/Работа/StudyProjects/Projects/JavaExampleProject/tracker-core/src/test/resources/Tomsk_Moscow.kml"));
     }
 
 }

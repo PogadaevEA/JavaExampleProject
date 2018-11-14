@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @EnableScheduling
 @SpringBootApplication
-@PropertySource("classpath:/app.properties")
+@PropertySource("/Users/egor/Работа/StudyProjects/Projects/JavaExampleProject/common/src/main/resources")
 @ComponentScan({"controllers","services"})
 public class TrackerCoreMain {
     public static void main(String[] args) {
